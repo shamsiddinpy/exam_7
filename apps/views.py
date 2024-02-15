@@ -23,17 +23,12 @@ class AddBlogView(CreateView):
     success_url = reverse_lazy('index')
 
 
-class DeleteBlogView(DeleteView):
+class DeleteProductView(DeleteView):
+    template_name = 'delete.html'
     model = Blog
+    context_object_name = 'blog_delete'
     success_url = reverse_lazy('index')
 
-    def delete(self, request, *args, **kwargs):
-        instance = self.get_object()
-        send_mail(
-            'Your data has been deleted',
-            'Sizning malumotlaringiz ochirildi.',
-            '',
-            [instance.author.email],
-            fail_silently=False,
-        )
-        return super().delete(request, *args, **kwargs)
+    def form_valid(self, form):
+        messages.success(self.request, "Vazifa muvaffaqiyatli o'chirildi.")
+        return super().form_valid(form)
