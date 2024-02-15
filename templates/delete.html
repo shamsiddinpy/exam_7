@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Delete Blog</title>
+</head>
+<body>
+    <form method="post" class="card">
+        {% csrf_token %}
+        <h2>Delete Blog</h2>
+        <p>Oʻchirib tashlamoqchi ekanligingizga ishonchingiz komilmi    "{{ blog_delete.title }}"?</p>
+        <p class="form-buttons">
+            <input type="submit" class="btn btn-primary" value="Delete">
+            <a href="{% url 'index' %}" class="btn btn-outline">Cancel</a>
+        </p>
+    </form>
+</body>
+</html>
